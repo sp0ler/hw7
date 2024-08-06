@@ -1,23 +1,69 @@
 package com.github.javarar.matrix.production;
 
-import com.github.javarar.matrix.production.MatrixProduction.Matrix;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.stream.Stream;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MatrixProductionTest {
 
-    @DisplayName("Задание 2. Вычисление произведения квадратных матриц")
-    @ParameterizedTest
-    @MethodSource("matrixProducer")
-    public void validateMatrixProduction(Matrix a, Matrix b) {
-        throw new UnsupportedOperationException("реализуй меня");
+    @Test
+    public void validateMatrixProduction() {
+        int[][] a = {
+                { 1, 1, 1 },
+                { 2, 2, 2 },
+                { 3, 3, 3 },
+                { 4, 4, 4 }
+        };
+
+        int[][] b = {
+                { 1, 1, 1, 1 },
+                { 2, 2, 2, 2 },
+                { 3, 3, 3, 3 }
+        };
+
+        int[][] expected = {
+                {6, 6, 6, 6 },
+                {12, 12, 12, 12 },
+                {18, 18, 18, 18 },
+                {24, 24, 24, 24 }
+        };
+
+
+        int rowA = 4, colA = 3, rowB = 3, colB = 4;
+        int[][] result = MatrixProduction.product(rowA, colA, a, rowB, colB, b);
+
+        assertArrayEquals(expected, result);
     }
 
-    private static Stream<Arguments> matrixProducer() {
-        throw new UnsupportedOperationException("реализуй меня");
+    @Test
+    public void validateMatrixProduction2() {
+        int[][] a = {
+                { 1, 1, 1 },
+                { 2, 2, 2 },
+                { 3, 3, 3 }
+        };
+
+        int[][] b = {
+                { 1, 1, 1 },
+                { 2, 2, 2 },
+                { 3, 3, 3 }
+        };
+
+        int[][] expected = {
+                {6, 6, 6 },
+                {12, 12, 12 },
+                {18, 18, 18 }
+        };
+
+        int rowA = 3, colA = 3, rowB = 3, colB = 3;
+        int[][] result = MatrixProduction.product(rowA, colA, a, rowB, colB, b);
+
+        assertArrayEquals(expected, result);
     }
+
 }
